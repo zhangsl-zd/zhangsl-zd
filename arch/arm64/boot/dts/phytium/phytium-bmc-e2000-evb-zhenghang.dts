@@ -1,0 +1,257 @@
+// SPDX-License-Identifier: GPL-2.0
+/*
+ * DTS file for Phytium E2000S test board
+ *
+ * Copyright (C) 2022, Phytium Technology Co., Ltd.
+ */
+
+/dts-v1/;
+/memreserve/ 0x80000000 0x10000;
+
+#include "e2000s.dtsi"
+
+/{
+	model = "E2000S EVB Board by zhenghang";
+	compatible = "phytium,e2000s";
+
+	chosen {
+		stdout-path = "serial1:115200n8";
+	};
+
+	memory@00{
+		device_type = "memory";
+		reg = <0x0 0x80000000 0x0 0x7a000000>;
+	};
+
+        iio-hwmon {
+                compatible = "iio-hwmon";
+                io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
+                        <&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>, <&adc1 0> ;
+        };
+};
+
+
+
+&usb2_0 {
+	dr_mode = "peripheral";
+	status = "okay";
+};
+
+&usb2_1 {
+	dr_mode = "peripheral";
+	status = "okay";
+};
+
+&usb2_2 {
+	dr_mode = "peripheral";
+	status = "okay";
+};
+
+&usb2_3 {
+	dr_mode = "peripheral";
+	status = "okay";
+};
+
+&usb2_4 {
+	dr_mode = "peripheral";
+	status = "okay";
+};
+
+&macb0 {
+	phy-mode = "rmii";
+	use-mii;
+	use-ncsi;
+	status = "okay";
+	fixed-link {
+		speed = <100>;
+		full-duplex;
+	};
+};
+
+&macb1 {
+	phy-mode = "rmii";
+	use-mii;
+	status = "okay";
+};
+
+&pwm0 {
+	phytium,db = <0 0 0 0 0 0>;
+	status = "okay";
+};
+
+&pwm1 {
+	phytium,db = <0 0 0 1000 1000 0>;
+	status = "okay";
+};
+
+&pwm2 {
+	phytium,db = <0 0 0 1000 1000 1>;
+	status = "okay";
+};
+
+&pwm3 {
+	phytium,db = <0 0 0 1000 1000 2>;
+	status = "okay";
+};
+
+&pwm4 {
+	phytium,db = <0 0 0 0 0 0>;
+	status = "okay";
+};
+
+&pwm5 {
+	phytium,db = <0 0 0 0 0 0>;
+	status = "okay";
+};
+
+&pwm6 {
+	phytium,db = <0 0 0 0 0 0>;
+	status = "okay";
+};
+
+&pwm7 {
+	phytium,db = <0 0 0 0 0 0>;
+	status = "okay";
+};
+
+&tacho0 {
+	status = "okay";
+};
+
+&tacho1 {
+	status = "okay";
+};
+
+
+&uart1 {
+	status = "okay";
+};
+
+
+&gpio0 {
+	status = "okay";
+};
+
+&gpio1 {
+	status = "okay";
+};
+
+&gpio2 {
+	status = "okay";
+};
+
+&gpio3 {
+	status = "okay";
+};
+
+&gpio4 {
+	status = "okay";
+};
+
+&gpio5 {
+	status = "okay";
+};
+
+&qspi0 {
+	status = "okay";
+	flash@0 {
+		#include "openbmc-e2000-flash-layout.dtsi"
+	};
+};
+
+&jpeg0 {
+	status = "okay";
+};
+
+&adc0 {
+       status = "okay";
+};
+
+&adc1 {
+        status = "okay";
+};
+
+&i2c1 {
+        status = "okay";
+};
+&mio6 {
+        status = "okay";
+	rtc@68 {
+		compatible = "dallas,ds1339";
+		reg = <0x68>;
+	};
+};
+
+&mio8 {
+        status = "okay";
+};
+
+&mio9 {
+        status = "okay";
+};
+
+&i3c0 {
+        status = "okay";
+	lm75@48 {
+		compatible = "ti,tmp100";
+		reg = <0x48 0x0 0x50>;
+	};
+        lm75@49 {
+                compatible = "ti,tmp100";
+                reg = <0x49 0x0 0x50>;
+        };
+        lm75@4a {
+                compatible = "ti,tmp100";
+                reg = <0x4a 0x0 0x50>;
+        };
+        lm75@4c {
+                compatible = "ti,tmp100";
+                reg = <0x4c 0x0 0x50>;
+        };
+        lm75@4d {
+                compatible = "ti,tmp100";
+                reg = <0x4d 0x0 0x50>;
+        };
+        lm75@4e {
+                compatible = "ti,tmp100";
+                reg = <0x4e 0x0 0x50>;
+        };
+};
+
+&i3c1 {
+        status = "okay";
+};
+
+&i3c2 {
+        status = "okay";
+};
+
+&i3c3 {
+        status = "okay";
+};
+
+&kcs0 {
+        kcs_chan = <1>;
+        kcs_addr = <0xca0>;
+        status = "okay";
+};
+&kcs1 {
+        kcs_chan = <2>;
+        kcs_addr = <0xca8>;
+        status = "okay";
+};
+&kcs2 {
+        kcs_chan = <3>;
+        kcs_addr = <0xcb2>;
+        status = "okay";
+};
+&kcs3 {
+        kcs_chan = <4>;
+        kcs_addr = <0xcb0>;
+        status = "okay";
+};
+&ibt {
+        status = "okay";
+};
+
+

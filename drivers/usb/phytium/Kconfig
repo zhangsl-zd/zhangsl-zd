@@ -1,0 +1,21 @@
+config USB_PHYTIUM
+	tristate "PHYTIUM USB DRD Core Support"
+	depends on USB
+	help
+	  Say Y or M here if your system has a OTG USB Controller based on PHYTIUM USB Core.
+
+	  If you choose to build this driver is a dynamically linked modules, the module will
+          be called phytium-usb.ko
+
+config USB_PHYTIUM_HOST
+	tristate "Host only mode"
+	depends on USB=y && (USB_PHYTIUM=m || USB_PHYTIUM)
+	help
+	  Say Y or M here if your want to set PHYTIUM OTG USB Controller work in Host-only mode
+
+config USB_PHYTIUM_GADGET
+	tristate "Gadget only mode"
+	depends on USB_GADGET=y && (USB_PHYTIUM=m || USB_PHYTIUM)
+	help
+	  Say Y or M here if your want to set PHYTIUM OTG USB Controller work in Peripheral-only mode
+

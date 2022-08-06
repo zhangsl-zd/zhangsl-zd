@@ -1,0 +1,22 @@
+# SPDX-License-Identifier: GPL-2.0-only
+config CANFD_PHYTIUM
+	tristate "Phytium CANFD support"
+	default y if ARCH_PHYTIUM
+	help
+	  Say Y here if you want support for Phytium CANFD controller framework.
+	  This is common support for devices that embed the Phytium CAN IP.
+
+	  To compile this driver as a module, choose M here: the module will
+	  be called phytium_can.
+
+config CANFD_PHYTIUM_PLATFORM
+	tristate "Phytium CANFD support for io-mapped devices"
+	default y if ARCH_PHYTIUM
+	depends on HAS_IOMEM && CANFD_PHYTIUM
+	help
+	  Say Y here is you want to support for IO Mapped Phytium CANFD controller.
+	  This support is for devices that have the Phytium CANFD controller IP
+	  embedded into the device and the IP is IO Mapped to the processor.
+
+	  To compile this driver as a module, choose M here: the module will
+	  be called phytium_can_platform.
